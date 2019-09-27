@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 前端js模块发展历程
+title: 前端js模块发展心酸历程
 date: 2019-09-27 14:32:20 +0800
 description: 前端js模块的发展历程. # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
@@ -8,7 +8,9 @@ fig-caption: # Add figcaption (optional)
 tags: [js modules, frontend]
 ---
 历史发展：
-js这门语言从问世到现在，已经有20年历史了，在这20年中，语言本身语法也在不断演变，不断更新，从简单的应用场景到现在spa单页应用。前端开发者在这个历程中经历了太多的曲折，今天从模块化角度简单探讨下js模块化（注意：不是前端模块化）的发展历程。
+js这门语言从问世到现在，已经有20年历史了，在这20年中，语言本身语法也在不断演变，不断更新，从简单的应用场景到现在spa单页应用。
+
+前端开发者在这个历程中经历了太多的曲折，今天从模块化角度简单探讨下js模块化（注意：不是前端模块化）的发展历程。
 
 js定位：
 早起的js语言问世时，定位是辅助html在浏览器上的展示并实现简单的表单验证提交、简单的动画展示，因此js并没有被设计的很复杂，并没有模块化的思考。
@@ -75,6 +77,7 @@ var a = (function() {
 
 ## CommonJS规范实现
 CommonJS目的是让浏览器之外的JavaScript能够通过模块化的方式来开发和协作。
+
 在CommonJS规范中，每个JavaScript文件就是一个独立的模块上下文，在这个上下文中默认创建的属性都是私有的，其他文件不可见，如果想将当前文件的属性暴露出去，通过module.exports 对象来暴露对外的接口，Node 就是采用CommonJS规范实现模块依赖。
 
 `a.js`
@@ -107,6 +110,7 @@ a.goodbye();
 
 ## AMD规范实现
 AMD是Asynchronous Module Definition的简称，即“异步模块定义”。
+
 顾名思义，在模块依赖加载时，会以一种非阻塞的方式，通过appendChild将多个依赖的模块插入到DOM中，在依赖模块加载成功之后，调用回调函数实现异步的等待执行。
 
 `有依赖的模块定义`
@@ -166,7 +170,30 @@ UMD是Universal Module Definition，实现CommonJS和AMD的统一
 ```
 
 # 第三阶段：ES6原生实现
+可能大家已经注意到了，上面提到的所有方法，都不是JavaScript语言原生支持的。但是ES6标准出来之后，已经引入了原生的模块功能。
 
+ES6的原生模块功能非常棒，它兼顾了规范、语法简约性和异步加载功能，并且还支持循环依赖。
+
+最厉害的是，import进来的模块对于调用它的模块来说，是一个活的只读视图，而不是想CommonJS一样是一个内存的拷贝。
+下面是ES6模块的实例：
+
+`lib/a.js`
+```
+export let a = 1;
+export function add() {
+  a++;
+};
+```
+`main.js`
+```
+import * as a from 'lib/a.js';
+console.log(a.a);
+a.add();
+console.log(a.a);
+```
+
+# 总结
+ES6的模块语法，虽然在主流浏览器还没支持，但是可以通过Babel等转译器实现转译，因此可以放心使用。
 
 ![I and My friends]({{site.baseurl}}/assets/img/we-in-rest.jpg)
 
