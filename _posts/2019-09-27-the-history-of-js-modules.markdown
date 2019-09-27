@@ -2,7 +2,7 @@
 layout: post
 title: 前端js模块发展心酸历程
 date: 2019-09-27 14:32:20 +0800
-description: 前端js模块的发展历程. # Add post description (optional)
+description: 前端js模块的发展心酸历程 # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [js modules, frontend]
