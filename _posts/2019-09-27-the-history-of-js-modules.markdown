@@ -40,8 +40,8 @@ function writeHello() {
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="other1.js></script>
-  <script src="other2.js></script>
+  <script src="other1.js"></script>
+  <script src="other2.js"></script>
 </head>
 <body onLoad="writeHello('en')">
 </body>
